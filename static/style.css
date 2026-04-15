@@ -1,0 +1,359 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 15px;
+}
+
+header h1 {
+    font-size: 2.5em;
+    color: #667eea;
+    margin-bottom: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header p {
+    color: #666;
+    font-size: 1.1em;
+}
+
+.control-panel {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: start;
+}
+
+.difficulty-section h2,
+.custom-section h2,
+.stats-section {
+    font-size: 1.3em;
+    color: #667eea;
+    margin-bottom: 15px;
+}
+
+.difficulty-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.difficulty-btn {
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.difficulty-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.difficulty-btn .level {
+    font-size: 1.1em;
+    margin-bottom: 3px;
+}
+
+.difficulty-btn .desc {
+    font-size: 0.85em;
+    opacity: 0.9;
+}
+
+.custom-section {
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.input-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    gap: 10px;
+}
+
+.input-row label {
+    min-width: 70px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.input-row input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+.input-row input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+.custom-btn {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1em;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+}
+
+.stats-section {
+    background: #f0f4ff;
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid #667eea;
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 20px;
+    align-items: center;
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.stat-label {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.1em;
+}
+
+.stat-value {
+    font-size: 1.3em;
+    font-weight: bold;
+    color: #764ba2;
+    min-width: 50px;
+}
+
+.reset-btn {
+    padding: 10px 20px;
+    background: #ff6b6b;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.reset-btn:hover {
+    background: #ff5252;
+    transform: translateY(-2px);
+}
+
+.game-container {
+    text-align: center;
+}
+
+.game-status {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    min-height: 40px;
+}
+
+.game-status.playing {
+    color: #667eea;
+    background: #f0f4ff;
+}
+
+.game-status.won {
+    color: white;
+    background: linear-gradient(135deg, #52c41a 0%, #13c2c2 100%);
+}
+
+.game-status.lost {
+    color: white;
+    background: linear-gradient(135deg, #ff6b6b 0%, #ff4757 100%);
+}
+
+.board-wrapper {
+    display: inline-block;
+    background: #ddd;
+    border-radius: 8px;
+    padding: 2px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.board {
+    display: inline-grid;
+    gap: 2px;
+    padding: 5px;
+    background: #ddd;
+    border-radius: 6px;
+}
+
+.cell {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #999;
+    background: linear-gradient(145deg, #e0e0e0, #c0c0c0);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    transition: all 0.1s ease;
+    border-radius: 3px;
+}
+
+.cell:hover {
+    transform: scale(0.95);
+}
+
+.cell.hidden {
+    background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+    color: #999;
+}
+
+.cell.empty {
+    background: linear-gradient(145deg, #a0a0a0, #808080);
+    color: #a0a0a0;
+    cursor: default;
+}
+
+.cell.empty:hover {
+    transform: none;
+}
+
+.cell.flagged {
+    background: linear-gradient(145deg, #ffa500, #ff8c00);
+    color: white;
+    font-size: 1.2em;
+}
+
+.cell.mine {
+    background: linear-gradient(145deg, #ff4444, #cc0000);
+    color: white;
+    font-size: 1.2em;
+}
+
+.cell.num-1 {
+    color: #0000ff;
+}
+
+.cell.num-2 {
+    color: #008000;
+}
+
+.cell.num-3 {
+    color: #ff0000;
+}
+
+.cell.num-4 {
+    color: #000080;
+}
+
+.cell.num-5 {
+    color: #800000;
+}
+
+.cell.num-6 {
+    color: #008080;
+}
+
+.cell.num-7 {
+    color: #000000;
+}
+
+.cell.num-8 {
+    color: #808080;
+}
+
+.cell.clicked {
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+footer {
+    margin-top: 30px;
+    text-align: center;
+    color: #666;
+    font-size: 0.95em;
+    border-top: 1px solid #ddd;
+    padding-top: 15px;
+}
+
+@media (max-width: 768px) {
+    .control-panel {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-section {
+        grid-template-columns: 1fr;
+    }
+
+    .difficulty-buttons {
+        flex-direction: row;
+    }
+
+    .difficulty-btn {
+        flex-direction: row;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .cell {
+        width: 30px;
+        height: 30px;
+        font-size: 0.8em;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
+}

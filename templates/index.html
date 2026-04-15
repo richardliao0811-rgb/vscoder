@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>踩地雷遊戲</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 踩地雷遊戲</h1>
+            <p>一個經典的邏輯遊戲</p>
+        </header>
+
+        <div class="control-panel">
+            <div class="difficulty-section">
+                <h2>選擇難度</h2>
+                <div class="difficulty-buttons">
+                    <button class="difficulty-btn" onclick="startGame(9, 9, 10)">
+                        <span class="level">簡單</span>
+                        <span class="desc">9×9 (10雷)</span>
+                    </button>
+                    <button class="difficulty-btn" onclick="startGame(16, 16, 40)">
+                        <span class="level">中等</span>
+                        <span class="desc">16×16 (40雷)</span>
+                    </button>
+                    <button class="difficulty-btn" onclick="startGame(16, 30, 99)">
+                        <span class="level">困難</span>
+                        <span class="desc">16×30 (99雷)</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="custom-section">
+                <h2>自訂遊戲</h2>
+                <div class="input-row">
+                    <label>行數：</label>
+                    <input type="number" id="customRows" min="4" max="30" value="9">
+                </div>
+                <div class="input-row">
+                    <label>列數：</label>
+                    <input type="number" id="customCols" min="4" max="30" value="9">
+                </div>
+                <div class="input-row">
+                    <label>地雷數：</label>
+                    <input type="number" id="customMines" min="1" max="100" value="10">
+                </div>
+                <button class="custom-btn" onclick="startCustomGame()">開始遊戲</button>
+            </div>
+
+            <div class="stats-section">
+                <div class="stat">
+                    <span class="stat-label">🚩 剩餘地雷：</span>
+                    <span class="stat-value" id="minesRemaining">-</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-label">⏱️ 計時：</span>
+                    <span class="stat-value" id="timer">0:00</span>
+                </div>
+                <button class="reset-btn" onclick="resetGame()">重新開始</button>
+            </div>
+        </div>
+
+        <div class="game-container" id="gameContainer" style="display: none;">
+            <div class="game-status" id="gameStatus"></div>
+            <div class="board-wrapper">
+                <div class="board" id="board"></div>
+            </div>
+        </div>
+
+        <footer>
+            <p>左鍵點擊翻開 | 右鍵點擊標記 | 同時點擊已打開的數字快速打開周圍格子</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='game.js') }}"></script>
+</body>
+</html>
