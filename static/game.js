@@ -184,11 +184,11 @@ function updateStatus() {
         statusElement.textContent = '遊戲進行中...';
         statusElement.className = 'game-status playing';
     } else if (currentGame.status === 'won') {
-        statusElement.textContent = '🎉 恭喜！你贏了！🎉';
+        statusElement.textContent = '🎉 遊戲結束！踩到地雷了！🎉';
         statusElement.className = 'game-status won';
         stopTimer();
     } else if (currentGame.status === 'lost') {
-        statusElement.textContent = '💥 踩到地雷了！遊戲結束';
+        statusElement.textContent = '你輸了';
         statusElement.className = 'game-status lost';
         stopTimer();
     }

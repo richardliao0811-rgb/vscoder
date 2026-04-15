@@ -12,13 +12,25 @@ class Minesweeper:
         self.flags = [[False] * cols for _ in range(rows)]
         self.game_over = False
         self.first_move = True
-        self._place_mines_randomly()
+        self.mines_placed = False  # 標記地雷是否已放置
 
-    def _place_mines_randomly(self):
-        positions = list(range(self.rows * self.cols))
+    def _place_mines_randomly(self, exclude_r=None, exclude_c=None):
+        """放置地雷，排除指定的位置（用於第一步）"""
+        positions = []
+        for r in range(self.rows):
+            for c in range(self.cols):
+                if exclude_r is not None and exclude_c is not None:
+                    if abs(r - exclude_r) <= 1 and abs(c - exclude_c) <= 1:
+                        continue  # 排除點擊位置及其周圍8個格子
+                positions.append((r, c))
+
+        # 如果可放置位置不夠，重新選擇（不排除）
+        if len(positions) < self.mines:
+            positions = [(r, c) for r in range(self.rows) for c in range(self.cols)
+                        if not (r == exclude_r and c == exclude_c)]
+
         random.shuffle(positions)
-        for idx in positions[: self.mines]:
-            r, c = divmod(idx, self.cols)
+        for r, c in positions[:self.mines]:
             self.board[r][c] = -1
         self._calculate_numbers()
 
@@ -61,10 +73,17 @@ class Minesweeper:
         if self.flags[r][c]:
             print("這個位置已標記為旗幟，先取消旗幟再翻開。")
             return
+
+        # 第一步特殊處理：先放置地雷，確保不會踩到地雷
+        if self.first_move:
+            self._place_mines_randomly(exclude_r=r, exclude_c=c)
+            self.first_move = False
+            self.mines_placed = True
+
         if self.board[r][c] == -1:
             self.game_over = True
             self._reveal_all()
-            print("踩到地雷了！遊戲結束。")
+            print("你輸了")
             return
         self._flood_fill(r, c)
         if self._check_win():
@@ -89,6 +108,8 @@ class Minesweeper:
                 self.visible[r][c] = True
 
     def _check_win(self):
+        if not self.mines_placed:
+            return False  # 地雷還沒放置，不能判斷勝利
         for r in range(self.rows):
             for c in range(self.cols):
                 if self.board[r][c] != -1 and not self.visible[r][c]:
